@@ -1,15 +1,50 @@
-//
-//  main.cpp
-//  lista_ordenada
-//
-//  Created by Diogo Martins on 4/13/15.
-//  Copyright (c) 2015 Diogo Martins. All rights reserved.
-//
-
 #include <iostream>
+#include <cstdlib>
+#include "listaord.h"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+int Menu()
+{
+    int escolha;
+    
+    cout << "--------------------------\n";
+    cout << "Selecione uma opcao:\n";
+    cout << "1. Insere elemento (no. inteiro) na lista\n";
+    cout << "2. Remove elemento (no. inteiro) da lista\n";
+    cout << "3. Imprime elementos da lista.\n";
+    cout << "0. Fim.\n";
+    cout << "Sua opcao: ";
+    cin >> escolha;
+    return escolha;
+}
+
+int main(int argc, char *argv[])
+{
+    lista_ord Lista;
+    int escolha, Item, n;
+    
+    while (escolha = Menu())
+        
+        switch(escolha) {
+            case 0:
+                return 0;
+            case 1:
+                cout << "Entre com elemento para inserir: ";
+                cin >> Item;
+                Lista.insere(Item);
+                break;
+            case 2:
+                cout << "Entre com elemento para remover: ";
+                cin >> Item;
+                if (Lista.remove(Item))
+                    cout << "Item " << Item << " removido.\n";
+                else
+                    cout << "Item nao existe\n";
+                break;
+            case 3:
+                cout << "Conteudo da lista:\n";
+                Lista.imprime();
+                break;   
+        }
+    system("PAUSE");
+    return EXIT_SUCCESS;
 }
